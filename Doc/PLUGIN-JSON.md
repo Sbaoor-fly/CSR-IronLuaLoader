@@ -24,7 +24,9 @@
 ```
 
 📝 PLUGIN["name"] 为加载插件的名字，json名字可用随意改动，插件名字需要写在配置文件中
+
 📝 如果name栏填的是TEST，则会寻找json同级的TEST.net.lua进行加载，暂时不支持ilp加密
+
 📝 PLUGINS["describe"] 为插件描述，加载插件时会一同输出
 
 ❗ 插件加载失败会返回ERRORID，下面是ERRODID对照biao
