@@ -28,7 +28,7 @@
  - 获取玩家对应UUID
  - 查询失败时返回Null
 
-```GetXUID(playername)```
+```GetXUID(string:playername)```
 
  - 获取玩家对应UUID
  - 查询失败时返回Null
