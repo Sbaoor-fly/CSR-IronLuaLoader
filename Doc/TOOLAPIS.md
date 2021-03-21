@@ -6,7 +6,7 @@
 
 ```ReadLines(string:filepath)```
 
- - 读取并文件的每一行
+ - 读取并返回文件的每一行
  - 返回值为table
 
 ```WriteText(string:filepath,string:texts)```
