@@ -17,7 +17,7 @@
         "Library": [ //此处为依赖的Lua库列表
             "dkjson"
         ],
-        "Plugins": [], //此处填写依赖的ILL插件列表，只接受对应标识符 //xuiddb.lua
+        "Plugins": [], //此处填写依赖的ILL插件列表，只接受对应标识符
         "IronLuaLoader": 200 //ILR最低版本
     }
 }
