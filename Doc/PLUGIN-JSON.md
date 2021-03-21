@@ -10,7 +10,7 @@
         "name": "TEST",  //插件名称
         "guid": "368590ed-e3bf-4ae4-9f35-eb196333632c", //插件唯一标识符
         "author": "Sbaoor",                           //插件作者
-	"describe":["ILD示例插件已加载"],             //插件描述
+	"describe":["ILL示例插件已加载"],             //插件描述
         "version": [2,0,0]                          //插件版本
     },
     "DEPENGING": {
