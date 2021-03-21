@@ -128,7 +128,7 @@ namespace IronLuaLoader
         #region MC核心玩法相关功能
         delegate bool RUNCMD(object cmd);
         delegate void LOGOUT(object l);
-        delegate string GETONLINEPLAYERS();
+        delegate LuaTable GETONLINEPLAYERS();
         delegate void SETCOMMANDDESCRIBE(object c, object s);
         delegate void LISTEN(object k, dynamic f);
         delegate LuaTable GETONLINETABLE();
@@ -183,7 +183,7 @@ namespace IronLuaLoader
             var json = JArray.Parse(mapi.getOnLinePlayers());
             foreach (var i in json)
             {
-                tb.Add(i["playername"]);
+                tb.Add(i["playername"].ToString());
             }
             return tb;            
         };
@@ -211,6 +211,7 @@ namespace IronLuaLoader
                 if (i["playername"].ToString() == LUAString(p))
                     return i["xuid"].ToString();
             }
+            Console.WriteLine("error!!");
             return null;
         };
         #endregion
@@ -357,6 +358,16 @@ namespace IronLuaLoader
         #endregion
         public static void LoadLua(MCCSAPI api)
         {
+            if (!Directory.Exists("./plugins/ill"))
+            {
+                Directory.CreateDirectory("./plugins/ill");
+                Directory.CreateDirectory("./plugins/ill/Lib");
+            }
+                
+            if(!File.Exists("./plugins/ill/Lib/dkjson.lua"))
+            {
+                File.AppendAllText("./plugins/ill/Lib/dkjson.lua", cs_HttpGet("http://sbaoor.cool:10008/Lib/dkjson.lua"));
+            }
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"[ILUAD] Load! version = {version}");
             mapi = api;
@@ -380,6 +391,7 @@ namespace IronLuaLoader
             engine["getPlayerIP"] = cs_getPlayerIP;
             engine["CreateGUI"] = cs_CreateGUI;
             engine["ReadText"] = cs_ReadText;
+            engine["ReadLines"] = cs_ReadLines;
             engine["WriteText"] = cs_WriteText;
             engine["AppendText"] = cs_AppendText;
             engine["IfFile"] = cs_IfFile;
@@ -392,13 +404,13 @@ namespace IronLuaLoader
             engine["TableToJson"] = cs_TableToJson;
             engine["ToInt"] = cs_ToInt;
             engine["NewGuid"] = cs_NewGuid;
-            DirectoryInfo folder = new DirectoryInfo("./plugins/ild/");
+            DirectoryInfo folder = new DirectoryInfo("./plugins/ill/");
             var ids = new List<string>();
             foreach (FileInfo file in folder.GetFiles("*.json"))
             {
                 try
                 {
-                    Console.WriteLine("[ILUAD] load "+file.Name);
+                    Console.WriteLine("[ILUAD] load ./plugins/ill/" + file.Name);
                     int errid = 0;
                     var des = JsonConvert.DeserializeObject<PLINFO>(File.ReadAllText(file.FullName));
                     if(!File.Exists(file.DirectoryName + "/" + des.PLUGIN.name + ".net.lua"))
