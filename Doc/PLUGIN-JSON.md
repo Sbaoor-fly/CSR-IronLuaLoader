@@ -29,7 +29,7 @@
 
 📝 PLUGINS["describe"] 为插件描述，加载插件时会一同输出
 
-❗ 插件加载失败会返回ERRORID，下面是ERRODID对照biao
+❗ 插件加载失败会返回ERRORID，下面是ERRODID对照表
 
 ID | 描述 | 解决方法
 -|-|-
