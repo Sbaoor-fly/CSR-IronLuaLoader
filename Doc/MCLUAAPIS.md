@@ -49,7 +49,7 @@
 ```sendSimpleForm(string:uuid,string:title,string:context,string:Array)```
 
  - 向UUID对应玩家发送一个普通表单
- - Array格式: ["我是第一行","我是第二行,"我是第三行]
+ - Array格式: ["我是第一行","我是第二行,"我是第三行"]
 
 ```sendModalForm(string:uuid,string:title,string:context,string:botton1,string:botton2)```
 
