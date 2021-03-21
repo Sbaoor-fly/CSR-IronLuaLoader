@@ -23,14 +23,14 @@
  - 返回值为一个table
  - 可以用```TableToJson(table)```函数转为string:Array
 
-```"GetUUID(string:playername)```
+```GetUUID(string:playername)```
 
  - 获取玩家对应UUID
  - 查询失败时返回Null
 
 ```GetXUID(string:playername)```
 
- - 获取玩家对应UUID
+ - 获取玩家对应XUID
  - 查询失败时返回Null
 
 ```getscoreboard(string:uuid,string:objname)```
