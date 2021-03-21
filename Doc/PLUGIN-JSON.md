@@ -10,8 +10,8 @@
         "name": "Fai",  //插件名称
         "guid": "a2ef5a63-2fce-4ca1-891c-a03e838be98d", //插件唯一标识符
         "author": "Sbaoor",                           //插件作者
-		"describe":["ILD示例插件已加载"],                       //插件描述
-        "version": [2,0,0]                              //插件版本
+	"describe":["ILD示例插件已加载"],             //插件描述
+        "version": [2,0,0]                          //插件版本
     },
     "DEPENGING": {
         "Library": [ //此处为依赖的Lua库列表
