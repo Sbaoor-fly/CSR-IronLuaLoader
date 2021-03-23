@@ -11,6 +11,7 @@ using System.Web.Script.Serialization;
 using System.Net;
 using System.Threading;
 using Newtonsoft.Json.Linq;
+using IronPythonRunner;
 
 namespace IronLuaLoader
 {
@@ -22,7 +23,8 @@ namespace IronLuaLoader
         private static MCCSAPI mapi;
         static JavaScriptSerializer ser = new JavaScriptSerializer();
         private static Dictionary<int, Thread> thr = new Dictionary<int, Thread>();
-        public static int version = 210;
+        public static Dictionary<string, IntPtr> ptr = new Dictionary<string, IntPtr>();
+        public static int version = 220;
         static string LUAString(object o)
         {
             return o?.ToString();
@@ -228,6 +230,35 @@ namespace IronLuaLoader
         delegate bool SETPLAYERSIDEBAR(object uuid, object title, object list);
         delegate int GETSCOREBOARD(object uuid, object stitle);
         delegate GUIS.GUIBuilder CREATEGUI(object title);
+        delegate void TELEPORT(object uuid, object x, object y, object z, object did);
+        static TELEPORT cs_teleport = (uuid, x, y, z, did) =>
+        {
+            var TPFuncPtr = new Dictionary<string, int>
+            {
+                    { "1.16.200.2", 0x00C82C60 },
+                    { "1.16.201.2", 0x00C82C60 },
+                    { "1.16.201.3", 0x00C82C60 },
+                    {"1.16.210.05", 0x007BA190 },
+                    {"1.16.210.06", 0x007B1D20 }
+            };
+            IntPtr player = IntPtr.Zero;
+            int _ptr = 0;
+            if (TPFuncPtr.TryGetValue(mapi.VERSION, out _ptr) &&
+                ptr.TryGetValue(LUAString(uuid), out player))
+            {
+                var temp = new Vec3
+                {
+                    x = Convert.ToInt32(x),
+                    y = Convert.ToInt32(y),
+                    z = Convert.ToInt32(z)
+                };
+                Hook.tp(mapi, _ptr, player, temp, Convert.ToInt32(did));
+            }
+            else
+            {
+                Console.WriteLine("[ILL] Hook[Teleport]未适配此版本。");
+            }
+        };
         /// <summary>
         /// 重命名一个指定的玩家名
         /// </summary>
@@ -388,6 +419,7 @@ namespace IronLuaLoader
             engine["disconnectClient"] = cs_disconnectClient;
             engine["addPlayerItem"] = cs_addPlayerItem;
             engine["talkAs"] = cs_talkAs;
+            engine["teleport"] = cs_teleport;
             engine["getPlayerIP"] = cs_getPlayerIP;
             engine["CreateGUI"] = cs_CreateGUI;
             engine["ReadText"] = cs_ReadText;
@@ -451,6 +483,19 @@ namespace IronLuaLoader
                     Console.ForegroundColor = ConsoleColor.White;
                 }
              }
+            api.addBeforeActListener(EventKey.onLoadName, x =>
+            {
+                var a = BaseEvent.getFrom(x) as LoadNameEvent;
+                ptr.Add(a.uuid, a.playerPtr);
+                return true;
+            });
+
+            api.addBeforeActListener(EventKey.onPlayerLeft, x =>
+            {
+                var a = BaseEvent.getFrom(x) as PlayerLeftEvent;
+                ptr.Remove(a.uuid);
+                return true;
+            });
         }
     }
 }

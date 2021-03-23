@@ -216,6 +216,7 @@
     <Compile Include="BDS\MCCSAPI.cs" />
     <Compile Include="BDS\Plugin.cs" />
     <Compile Include="GUI.cs" />
+    <Compile Include="Hook.cs" />
     <Compile Include="PluginInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
