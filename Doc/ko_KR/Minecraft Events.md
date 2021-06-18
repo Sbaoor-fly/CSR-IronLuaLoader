@@ -21,7 +21,7 @@ onRespawn | 리스폰할 때를 감지 | 불가능
 onChat | 채팅했을 때를 감지 | 불가능
 onInputText | 플레이어가 텍스트를 입력했을 때를 감지 | 가능
 onCommandBlockUpdate | 플레이어가 커맨드 블럭을 업데이트했을 때를 감지 | 가능
-onInputCommand | 플레이어가　명령어를 입력했을　때를　감지 | 가능
+onInputCommand | 플레이어가 명령어를 입력했을 때를 감지 | 가능
 onBlockCmd | 광산 수레 커맨드가 실행했을 때를 감지 | 가능
 onNpcCmd | NPC가 커맨드를 실행했을 때를 감지 | 가능
 onLoadName |  이름이 로드됐을 때를 감지 | 불가능
