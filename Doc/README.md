@@ -1,21 +1,21 @@
-### 공통 자료형 규약
+### 通用类型约定
 
-```bool``` -> 참/거짓(boolean), (true/false)
+```bool``` -> 布尔值(true/false)
 
-```int``` -> 양수(unsigend int)
+```int``` -> 无符号整数
 
-```string``` -> 문자열
+```string``` -> 字符串
 
-```function``` -> Lua 함수
+```function``` -> lua函数
 
-```intptr``` -> 플레이어 포인터
+```intptr``` -> 玩家指针
 
-```object``` -> 미정의
+```object``` -> 未指定的类型
 
-### 변수와 자료형 표기 방법
+### 变量类型表示方法
 
-```자료형:변수이름```
+```类型:变量名```
 
-Ex)：string:playername
+如：string:playername
 
-#### 다음에 계속
+#### 未完待续

@@ -1,62 +1,63 @@
 # GUIBuilder
-GUIBuilder는 커스텀 Form을 위한 API이다.
 
-쉬우니 읽고 금방 구현할 수 있을 것이다.
+GUIBuilder是一个可以让您快速创建自定义表单的API
 
-```⛔ 이 문서는 테스트가 완료되지 않았으므로 버그 발견 시 제보바란다. (https://github.com/Sbaoor-fly/)```
+通过短暂的学习我相信您可以轻易上手
+
+```⛔ 本页面的部分内容未经过测试，如有Bug请联系作者进行修改```
 
 ```CreateGUI(string:title)```
  
- -  Form 객체를 초기화한다.
+ - 初始化一个表单对象
  
-주의 : 이제 나오는 모든 API는 객체가 초기화 된 후 호출해야 한다.
+注意：下列API均需要一个已初始化的表单对象来执行
 
 ```AddLabel(string:msg)```
 
- - 라벨 추가
+ - 为表单添加一个描述文本
  
 ```AddInput(string:msg1,string:msg2)```
 
- - msg1：입력 상자 이름
+ - msg1：输入框描述
  
- - msg2：워터마크 글자 (html에서 placeholder 속성과 같은 기능)
+ - msg2：水印文本
 
 ```AddSlider(string:msg,int:index,int:max)```
 
- - 슬라이더 추가
+ - 为表单添加一个游标滑块
  
- - index：초기값
+ - index：滑块初始位置
  
- - max：최대값
+ - max：最大格数
  
 ```AddToggle(string:msg)```
 
- - 스위치 추가
+ - 为表单添加一个开关
  
- - msg：설명
+ - msg：描述文本
  
 ```AddStepSlider(string:msg,int:index,string:Array)```
 
- - 스텝 슬라이더 추가
+ - 为表单添加一个矩阵滑块
  
- - mag：설명
+ - mag：描述文本
  
- - index：초기값
+ - index：初始选项
  
- - Array：목록，형식 : ["1번 값","2번 값","3번 값"]
+ - Array：表单数组，格式为["第一个选项","第二个选项","第三个选项"]
  
  ```AddDropdown(string:msg,int:index,string:Array)```
  
-  - 드롭다운 선택 상자 추가
+  - 为表单添加一个下拉框
   
-  - msg：설명
+  - msg：描述文本
   
-  - index：초기값
+  - index：初始选项
   
-  - Array：목록，형식 : ["1번 값","2번 값","3번 값"]
+  - Array：同上
   
  ```SendToPlayer(string:uuid)```
  
- - uuid로 인식된 플레이어에게 전송
+ - 将表单发送给UUID对应玩家
  
- - 폼 ID를 반환한다.
+ - 返回表单ID
